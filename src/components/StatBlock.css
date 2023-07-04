@@ -1,0 +1,17 @@
+.container {
+  border: 1px solid black;
+  text-align: center;
+  height: 2rem;
+  width: 2rem;
+}
+
+.name {
+  font-size: .825rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+}
+
+.value {
+  font-size: 1rem;
+}
