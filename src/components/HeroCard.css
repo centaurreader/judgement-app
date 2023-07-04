@@ -1,6 +1,34 @@
 .container {
-  border: 1px solid black;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .1);
+  border: 2px solid #dddddd;
+  padding: .5rem;
+  max-width: 375px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: .25rem;
 }
+
+.image {
+  position: absolute;
+  opacity: .125;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.content { position: relative; z-index: 2; }
+
+.header {
+  display: flex;
+}
+.headerLeft { flex: 1; }
+.headerRight { flex: 0 0 8rem; }
+
+.name { font-size: 2rem; }
 
 .statList {
   display: flex;
@@ -9,4 +37,43 @@
 
 .statListItem {
   flex: 1 0 33%;
+}
+
+.weaponTable {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.weaponTableHead {
+  border: 1px solid black;
+  background: grey;
+  font-weight: bold;
+}
+
+.weaponTableRow {
+  border: 1px solid black;
+}
+.weaponTableRow:last-of-type {
+  border-top: none;
+}
+
+.weaponTableCell {
+  border-right: 1px solid black;
+  text-align: center;
+}
+.weaponTableCell:last-of-type { border: none; }
+
+.weaponTableCellLeft {
+  text-align: left;
+}
+
+.controls {
+  margin-top: 1rem;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.control {
+  flex: 1;
 }

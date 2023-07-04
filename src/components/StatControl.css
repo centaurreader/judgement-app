@@ -1,0 +1,39 @@
+.container {
+  border: 1px solid black;
+  border-radius: .25rem;
+}
+
+.label {
+  background: black;
+  color: white;
+  display: block;
+  padding: .25rem;
+}
+
+.control {
+  display: flex;
+  padding: .25rem;
+}
+
+.button {
+  flex: 0;
+  padding: .25rem .5rem;
+  border: 1px solid black;
+  border-radius: .25rem;
+  background: none;
+  font-weight: bold;
+  margin-right: .25rem;
+}
+.button:last-of-type {
+  margin-right: 0;
+}
+
+.input {
+  flex: 1 0 1.5rem;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: .25rem;
+  box-shadow: none;
+  margin-right: .25rem;
+  width: 3rem;
+}
