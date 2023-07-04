@@ -17,6 +17,7 @@
       "airbnb"
   ],
   "plugins": [
-      "react"
+      "react",
+      "react-hooks"
   ]
 }

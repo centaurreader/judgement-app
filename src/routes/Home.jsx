@@ -1,9 +1,12 @@
 import React from 'react';
 import { useJudgementApi } from '../hooks/useJudgementApi';
-import HeroCard from '../components/HeroCard';
+import ChampionCard from '../components/ChampionCard';
 
 function HomeRoute() {
   const { data } = useJudgementApi();
+
+  if (data.heroes === null) { return null; }
+
   return (
     <div style={{ padding: '1rem' }}>
       <h1>Home</h1>
@@ -14,13 +17,13 @@ function HomeRoute() {
           flexWrap: 'wrap',
         }}
       >
-        {data.map((hero) => (
+        {data.heroes.map((hero) => (
           <div
             style={{
               marginTop: '1rem',
             }}
           >
-            <HeroCard
+            <ChampionCard
               key={hero.id}
               commonInnateAbilities={hero.commonInnateAbilities}
               gods={hero.gods}

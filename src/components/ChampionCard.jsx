@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatBlock from './StatBlock';
-import style from './HeroCard.css';
+import style from './ChampionCard.css';
 import StatControl from './StatControl';
 
-function HeroCard({
+function ChampionCard({
   imageUrl,
   commonInnateAbilities,
   gods,
@@ -83,17 +83,17 @@ function HeroCard({
   );
 }
 
-HeroCard.propTypes = {
+ChampionCard.propTypes = {
   commonInnateAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
   gods: PropTypes.arrayOf(PropTypes.string).isRequired,
   imageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   soulHarvest: PropTypes.string.isRequired,
-  stats: PropTypes.arrayOf(PropTypes.objectOf({
+  stats: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     value: PropTypes.string,
   })).isRequired,
-  weapons: PropTypes.arrayOf(PropTypes.objectOf({
+  weapons: PropTypes.arrayOf(PropTypes.shape({
     cost: PropTypes.string.isRequired,
     crit: PropTypes.string.isRequired,
     glance: PropTypes.string.isRequired,
@@ -104,4 +104,4 @@ HeroCard.propTypes = {
   })).isRequired,
 };
 
-export default HeroCard;
+export default ChampionCard;

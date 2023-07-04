@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  align-items: center;
+  margin-top: .5rem;
+}
+.logo {
+  height: 3rem;
+}
+.name {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+}
+.traits {
+  font-size: .825rem;
+}

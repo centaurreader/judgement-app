@@ -1,0 +1,11 @@
+.god {
+  display: flex;
+  max-width: 375px;
+  border: 1px solid #ccc;
+  padding: .25rem;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .5rem;
+  border-radius: .25rem;
+}
+.god:last-of-type { margin-bottom: 0; }

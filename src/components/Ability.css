@@ -1,0 +1,13 @@
+.name {
+  font-weight: bold;
+  font-size: .75rem;
+}
+
+.description {
+  font-size: .825rem;
+}
+
+.note {
+  font-size: .825rem;
+  margin-top: .5rem;
+}

@@ -1,17 +1,33 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import judgementFixture from './judgement-fixture.json';
+import heroesFixture from './judgement-fixture-heroes.json';
+import godsFixture from './judgement-fixture-gods.json';
 
 const JudgementApiContext = createContext({});
 
 function provideJudgementApi() {
-  const [judgementData, setJudgementData] = useState(null);
+  const [judgementData, setJudgementData] = useState({
+    heroes: null,
+    gods: null,
+  });
 
-  const fetchJudgementData = async () => {
-    setJudgementData(judgementFixture);
+  const fetchHeroes = async () => {
+    setJudgementData((state) => ({
+      ...state,
+      heroes: heroesFixture,
+    }));
   };
+
+  const fetchGods = async () => {
+    setJudgementData((state) => ({
+      ...state,
+      gods: godsFixture,
+    }));
+  };
+
   return {
-    load: fetchJudgementData,
+    loadHeroes: fetchHeroes,
+    loadGods: fetchGods,
     hasLoaded: judgementData !== null,
     data: judgementData,
   };
