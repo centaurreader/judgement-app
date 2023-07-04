@@ -12,9 +12,6 @@
     "sourceType": "module",
     "modules": true
   },
-  "rules": {
-    "react/prop-types": 0
-  },
   "extends": [
       "plugin:react/recommended",
       "airbnb"

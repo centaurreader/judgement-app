@@ -1,0 +1,12 @@
+.container {
+  border: 1px solid black;
+}
+
+.statList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.statListItem {
+  flex: 1 0 33%;
+}

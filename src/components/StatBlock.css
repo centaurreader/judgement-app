@@ -1,8 +1,6 @@
 .container {
   border: 1px solid black;
   text-align: center;
-  height: 2rem;
-  width: 2rem;
 }
 
 .name {
