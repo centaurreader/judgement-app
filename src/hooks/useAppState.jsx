@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 const AppStateContext = createContext({});
 
-function provideAppState() {
+const useProvideAppState = () => {
   const [appState, setAppState] = useState({});
 
   return {
     appState,
     setAppState,
   };
-}
+};
 
 export function AppStateProvider({ children }) {
-  const value = provideAppState();
+  const value = useProvideAppState();
   return (
     <AppStateContext.Provider value={value}>
       {children}

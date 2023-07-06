@@ -5,7 +5,7 @@ import godsFixture from './judgement-fixture-gods.json';
 
 const JudgementApiContext = createContext({});
 
-function provideJudgementApi() {
+const useProvideJudgementApi = () => {
   const [judgementData, setJudgementData] = useState({
     heroes: null,
     gods: null,
@@ -31,10 +31,10 @@ function provideJudgementApi() {
     hasLoaded: judgementData !== null,
     data: judgementData,
   };
-}
+};
 
 export function JudgementApiProvider({ children }) {
-  const value = provideJudgementApi();
+  const value = useProvideJudgementApi();
   return (
     <JudgementApiContext.Provider value={value}>
       {children}

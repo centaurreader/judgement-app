@@ -7,9 +7,10 @@ import style from './NewGame.css';
 function NewGameRoute() {
   const { loadHeroes, loadGods, data } = useJudgementApi();
   useEffect(() => {
+    if (data.gods !== null && data.heroes !== null) { return; }
     loadGods();
     loadHeroes();
-  }, []);
+  }, [loadGods, loadHeroes, data]);
 
   const handleSubmit = (event) => {
     event.preventDefault();

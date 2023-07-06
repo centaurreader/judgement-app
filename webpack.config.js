@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
 
   resolve: {
     extensions: [
@@ -21,6 +21,11 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.(tsx|ts)?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.(.js|jsx)$/,
         enforce: 'pre',
