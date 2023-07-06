@@ -1,14 +1,18 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/index.tsx',
 
   resolve: {
     extensions: [
       '.js',
       '.jsx',
+      '.ts',
+      '.tsx',
     ],
   },
 
@@ -22,22 +26,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(.js|jsx)$/,
-        enforce: 'pre',
+        test: /\.(tsx|ts)?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader',
-        },
+        use: 'babel-loader',
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.css$/i,

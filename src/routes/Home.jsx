@@ -22,6 +22,7 @@ function HomeRoute() {
             style={{
               marginTop: '1rem',
             }}
+            key={hero.id}
           >
             <ChampionCard
               key={hero.id}

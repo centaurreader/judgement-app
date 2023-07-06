@@ -8,7 +8,8 @@
           "browsers": ["last 2 versions"]
         }
       }
-    ]
+    ],
+    "@babel/preset-typescript"
   ],
   "ignore": [
     "node_modules"

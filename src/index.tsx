@@ -5,7 +5,7 @@ import App from './App';
 import { JudgementApiProvider } from './hooks/useJudgementApi';
 import { AppStateProvider } from './hooks/useAppState';
 
-const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('app') as Element);
 
 root.render(
   <BrowserRouter>

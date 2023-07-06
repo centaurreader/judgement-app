@@ -18,9 +18,10 @@ function App() {
   } = useJudgementApi();
 
   useEffect(() => {
+    if (data.gods !== null && data.heroes !== null) { return; }
     loadHeroes();
     loadGods();
-  }, []);
+  }, [loadGods, loadHeroes, data]);
 
   const { search } = useLocation();
   const query = new URLSearchParams(search);
