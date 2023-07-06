@@ -5,12 +5,12 @@ import Button from '../components/Button';
 import style from './NewGame.css';
 
 function NewGameRoute() {
-  const { loadHeroes, loadGods, data } = useJudgementApi();
+  const { loadChampions, loadGods, data } = useJudgementApi();
   useEffect(() => {
-    if (data.gods !== null && data.heroes !== null) { return; }
+    if (data.gods !== null && data.champions !== null) { return; }
     loadGods();
-    loadHeroes();
-  }, [loadGods, loadHeroes, data]);
+    loadChampions();
+  }, [loadGods, loadChampions, data]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,10 +58,10 @@ function NewGameRoute() {
         </label>
 
         <label htmlFor="god">
-          Heroes
+          Champions
           <select id="god" name="god" multiple>
             <option value="">Choose one...</option>
-            {data.heroes.map((hero) => (
+            {data.champions.map((hero) => (
               <option id={hero.id} key={hero.id}>
                 {hero.name}
               </option>

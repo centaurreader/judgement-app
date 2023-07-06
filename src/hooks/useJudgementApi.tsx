@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import heroesFixture from './judgement-fixture-heroes.json';
+import championsFixture from './judgement-fixture-champions.json';
 import godsFixture from './judgement-fixture-gods.json';
 import { Champion, God } from '../types/judgement';
 
 type JudgementApiState = {
-  heroes: Champion[] | null;
+  champions: Champion[] | null;
   gods: God[] | null;
 };
 
@@ -13,14 +13,14 @@ const JudgementApiContext = createContext({});
 
 const useProvideJudgementApi = () => {
   const [judgementData, setJudgementData] = useState<JudgementApiState>({
-    heroes: null,
+    champions: null,
     gods: null,
   });
 
-  const fetchHeroes = async () => {
+  const fetchChampions = async () => {
     setJudgementData((state) => ({
       ...state,
-      heroes: heroesFixture,
+      champions: championsFixture,
     }));
   };
 
@@ -32,7 +32,7 @@ const useProvideJudgementApi = () => {
   };
 
   return {
-    loadHeroes: fetchHeroes,
+    loadChampions: fetchChampions,
     loadGods: fetchGods,
     hasLoaded: judgementData !== null,
     data: judgementData,

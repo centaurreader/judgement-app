@@ -12,16 +12,16 @@ import GodCard from './components/GodCard';
 
 function App() {
   const {
-    loadHeroes,
+    loadChampions,
     loadGods,
     data,
   } = useJudgementApi();
 
   useEffect(() => {
-    if (data.gods !== null && data.heroes !== null) { return; }
-    loadHeroes();
+    if (data.gods !== null && data.champions !== null) { return; }
+    loadChampions();
     loadGods();
-  }, [loadGods, loadHeroes, data]);
+  }, [loadGods, loadChampions, data]);
 
   const { search } = useLocation();
   const query = new URLSearchParams(search);

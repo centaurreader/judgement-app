@@ -5,7 +5,7 @@ import ChampionCard from '../components/ChampionCard';
 function HomeRoute() {
   const { data } = useJudgementApi();
 
-  if (data.heroes === null) { return null; }
+  if (data.champions === null) { return null; }
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -17,7 +17,7 @@ function HomeRoute() {
           flexWrap: 'wrap',
         }}
       >
-        {data.heroes.map((hero) => (
+        {data.champions.map((hero) => (
           <div
             style={{
               marginTop: '1rem',
