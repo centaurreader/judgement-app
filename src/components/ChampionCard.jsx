@@ -4,6 +4,7 @@ import StatBlock from './StatBlock';
 import style from './ChampionCard.css';
 import StatControl from './StatControl';
 import ActiveAbility from './ActiveAbility';
+import CombatManoeuvres from './CombatManoeuvres';
 
 function ChampionCard({
   imageUrl,
@@ -15,6 +16,7 @@ function ChampionCard({
   weapons,
   uniqueInnateAbilities,
   activeAbilities,
+  combatManoeuvres,
 
 }) {
   return (
@@ -92,8 +94,26 @@ function ChampionCard({
             )}
           </p>
         </p>
-
       </div>
+
+      <div>
+        <p>
+          Combat Manoeuvres:
+          <p>
+            {' '}
+            {combatManoeuvres.map(
+              (activeAbility) => (
+                <CombatManoeuvres
+                  name={activeAbility.name}
+                  description={activeAbility.description}
+                  cost={activeAbility.cost}
+                />
+              ),
+            )}
+          </p>
+        </p>
+      </div>
+
       <div className={style.controls}>
         <div className={style.control}>
           <StatControl label="Level" value={0} />
@@ -127,6 +147,7 @@ ChampionCard.propTypes = {
   })).isRequired,
   uniqueInnateAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  combatManoeuvres: PropTypes.arrayOf(PropTypes.string).isRequired,
 
 };
 
