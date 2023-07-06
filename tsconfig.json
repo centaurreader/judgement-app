@@ -5,10 +5,13 @@
     "lib": ["dom", "ES2023", "dom.iterable"],
     "jsx": "react",
     "sourceMap": true,
-    // "strict": true,
+    "strict": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowJs": true,
+    "outDir": "dist"
   },
   "include": [
     "."
