@@ -18,14 +18,16 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
 
 ## To Do
 
-- [ ] Hero card
+- [x] Hero card v0
   - [x] stats
   - [x] character info
   - [x] weapons
   - [x] control blocks
-  - [ ] active abilities
-  - [ ] combat manoevres
-  - [ ] unique innate abilities
+  - [x] active abilities
+  - [x] combat manoevres
+  - [x] unique innate abilities
+- [ ] Tooltip
+- [ ] Modals, sidepanels
 - [ ] Gameplay set up
   - [ ] Set 3v3 or 5v5
   - [ ] Choose god
