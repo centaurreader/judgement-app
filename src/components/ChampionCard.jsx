@@ -21,8 +21,6 @@ function ChampionCard({
 }) {
   return (
     <div className={style.container}>
-      <img className={style.image} src={`https://hallofeternalchampions.com/images/${imageUrl}`} alt="" />
-
       <div className={style.content}>
         <div className={style.header}>
           <div className={style.headerLeft}>
@@ -76,9 +74,6 @@ function ChampionCard({
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div>
         <p>
           Active Abillities:
           <p>
@@ -86,6 +81,7 @@ function ChampionCard({
             {activeAbilities.map(
               (activeAbility) => (
                 <ActiveAbility
+                  key={activeAbility.name}
                   name={activeAbility.name}
                   description={activeAbility.description}
                   cost={activeAbility.cost}
@@ -94,19 +90,17 @@ function ChampionCard({
             )}
           </p>
         </p>
-      </div>
-
-      <div>
         <p>
           Combat Manoeuvres:
           <p>
             {' '}
             {combatManoeuvres.map(
-              (activeAbility) => (
+              (combatManoeuvre) => (
                 <CombatManoeuvres
-                  name={activeAbility.name}
-                  description={activeAbility.description}
-                  cost={activeAbility.cost}
+                  key={combatManoeuvre.name}
+                  name={combatManoeuvre.name}
+                  description={combatManoeuvre.description}
+                  cost={combatManoeuvre.cost}
                 />
               ),
             )}
@@ -122,6 +116,13 @@ function ChampionCard({
           <StatControl label="Health" value={0} />
         </div>
       </div>
+
+      <div
+        className={style.image}
+        style={{
+          backgroundImage: `url(https://hallofeternalchampions.com/images/${imageUrl})`,
+        }}
+      />
     </div>
   );
 }
