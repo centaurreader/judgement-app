@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import StatBlock from './StatBlock';
 import style from './ChampionCard.css';
 import StatControl from './StatControl';
+import ActiveAbility from './ActiveAbility';
 
 function ChampionCard({
   imageUrl,
@@ -12,6 +13,9 @@ function ChampionCard({
   soulHarvest,
   stats,
   weapons,
+  uniqueInnateAbilities,
+  activeAbilities,
+
 }) {
   return (
     <div className={style.container}>
@@ -32,6 +36,7 @@ function ChampionCard({
               {soulHarvest}
             </p>
             <p>{commonInnateAbilities.join(', ')}</p>
+            <p>{uniqueInnateAbilities.map((abillity) => abillity.name).join(', ')}</p>
           </div>
 
           <ul className={`${style.statList} ${style.headerRight}`}>
@@ -71,6 +76,24 @@ function ChampionCard({
         </table>
       </div>
 
+      <div>
+        <p>
+          Active Abillities:
+          <p>
+            {' '}
+            {activeAbilities.map(
+              (activeAbility) => (
+                <ActiveAbility
+                  name={activeAbility.name}
+                  description={activeAbility.description}
+                  cost={activeAbility.cost}
+                />
+              ),
+            )}
+          </p>
+        </p>
+
+      </div>
       <div className={style.controls}>
         <div className={style.control}>
           <StatControl label="Level" value={0} />
@@ -102,6 +125,9 @@ ChampionCard.propTypes = {
     solid: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   })).isRequired,
+  uniqueInnateAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+
 };
 
 export default ChampionCard;

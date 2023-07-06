@@ -39,6 +39,8 @@ function HomeRoute() {
                 { label: 'Res', value: hero.res },
               ]}
               weapons={hero.weapons}
+              uniqueInnateAbilities={hero.uniqueInnateAbilities}
+              activeAbilities={hero.activeAbilities}
             />
           </div>
         ))}
