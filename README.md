@@ -38,5 +38,6 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
     - [ ] handle skill tree (skoll, isabel)
   - [ ] browse items
   - [ ] equip item(s)
-  - [ ] view abilities / manoevres
+  - [ ] track activations
+  - [ ] reset all activations
 - [ ] Local networking / online play
