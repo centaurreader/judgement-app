@@ -30,8 +30,8 @@ function Tip({
         className={style.tip}
         style={{
           position: 'absolute',
-          top: position.top,
-          left: position.left,
+          top: position.top + window.scrollY,
+          left: position.left + window.scrollX,
         }}
       >
         {content}
