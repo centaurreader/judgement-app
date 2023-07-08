@@ -1,5 +1,6 @@
 export type Ability = {
   cost?: string;
+  id?: string;
   description: string;
   name: string;
 };

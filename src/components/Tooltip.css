@@ -1,0 +1,27 @@
+.container {
+  display: inline-block;
+}
+
+.wrapper {
+  cursor: pointer;
+  border: none;
+  font-size: inherit;
+  padding: 0;
+  background: transparent;
+  text-decoration: underline;
+  color: var(--primary_color);
+}
+.wrapperOpen,
+.wrapper:hover {
+  color: var(--primary_color_hover);
+}
+
+.tip {
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: .25rem;
+  padding: .25rem;
+  font-size: .75rem;
+  max-width: 14rem;
+  z-index: 3;
+}

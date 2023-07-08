@@ -13,15 +13,21 @@ import GodCard from './components/GodCard';
 function App() {
   const {
     loadChampions,
+    loadCommonInnateAbilities,
     loadGods,
     data,
   } = useJudgementApi();
 
   useEffect(() => {
-    if (data.gods !== null && data.champions !== null) { return; }
+    if (
+      data.gods !== null
+      && data.champions !== null
+      && data.commonInnateAbilities !== null
+    ) { return; }
     loadChampions();
     loadGods();
-  }, [loadGods, loadChampions, data]);
+    loadCommonInnateAbilities();
+  }, [loadGods, loadChampions, data, loadCommonInnateAbilities]);
 
   const { search } = useLocation();
   const query = new URLSearchParams(search);

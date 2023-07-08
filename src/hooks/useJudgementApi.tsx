@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import championsFixture from './judgement-fixture-champions.json';
+import commonInnateAbilities from './judgement-fixture-common-innate-abilities.json';
 import godsFixture from './judgement-fixture-gods.json';
-import { Champion, God } from '../types/judgement';
+import { Ability, Champion, God } from '../types/judgement';
 
 type JudgementApiState = {
   champions: Champion[] | null;
+  commonInnateAbilities: Ability[] | null;
   gods: God[] | null;
 };
 
@@ -14,6 +16,7 @@ const JudgementApiContext = createContext({});
 const useProvideJudgementApi = () => {
   const [judgementData, setJudgementData] = useState<JudgementApiState>({
     champions: null,
+    commonInnateAbilities: null,
     gods: null,
   });
 
@@ -31,9 +34,17 @@ const useProvideJudgementApi = () => {
     }));
   };
 
+  const fetchCommonInnateAbilities = async () => {
+    setJudgementData((state) => ({
+      ...state,
+      commonInnateAbilities,
+    }));
+  };
+
   return {
     loadChampions: fetchChampions,
     loadGods: fetchGods,
+    loadCommonInnateAbilities: fetchCommonInnateAbilities,
     hasLoaded: judgementData !== null,
     data: judgementData,
   };

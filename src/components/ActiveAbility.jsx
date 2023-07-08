@@ -11,13 +11,13 @@ function ActiveAbility({
     <div>
       <p>
         {' '}
-        <text className={style.name}>{name}</text>
+        <span className={style.name}>{name}</span>
         {' '}
-        <text className={style.cost}>
+        <span className={style.cost}>
           (
           {cost}
           )
-        </text>
+        </span>
       </p>
       <p className={style.description}>{description}</p>
     </div>

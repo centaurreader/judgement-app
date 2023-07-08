@@ -26,7 +26,13 @@ function HomeRoute() {
           >
             <ChampionCard
               key={hero.id}
-              commonInnateAbilities={hero.commonInnateAbilities}
+              commonInnateAbilities={hero.commonInnateAbilities.map((cia) => {
+                const dataCia = data.commonInnateAbilities.find((d) => d.name === cia);
+                return {
+                  name: cia,
+                  description: dataCia?.description ?? 'No info available',
+                };
+              })}
               gods={hero.gods}
               imageUrl={hero.imageUrl}
               name={hero.name}

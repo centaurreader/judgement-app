@@ -5,6 +5,8 @@ import style from './ChampionCard.css';
 import StatControl from './StatControl';
 import ActiveAbility from './ActiveAbility';
 import CombatManoeuvres from './CombatManoeuvres';
+import { Ability, Weapon } from '../types/judgement';
+import Tooltip from './Tooltip';
 
 function ChampionCard({
   imageUrl,
@@ -17,7 +19,17 @@ function ChampionCard({
   uniqueInnateAbilities,
   activeAbilities,
   combatManoeuvres,
-
+}: {
+  imageUrl: string;
+  commonInnateAbilities: { name: string; description: string; }[];
+  gods: string[];
+  name: string;
+  soulHarvest: string;
+  stats: { label: string; value: string; }[];
+  weapons: Weapon[];
+  uniqueInnateAbilities: Ability[];
+  activeAbilities: Ability[];
+  combatManoeuvres: Ability[];
 }) {
   return (
     <div className={style.container}>
@@ -35,7 +47,21 @@ function ChampionCard({
               {' '}
               {soulHarvest}
             </p>
-            <p>{commonInnateAbilities.join(', ')}</p>
+            <p>
+              {commonInnateAbilities.map((ability, i) => (
+                <React.Fragment key={ability.name}>
+                  <Tooltip
+                    content={(
+                      // eslint-disable-next-line react/no-danger
+                      <p dangerouslySetInnerHTML={{ __html: ability.description }} />
+                    )}
+                  >
+                    {ability.name}
+                  </Tooltip>
+                  {i === commonInnateAbilities.length - 1 ? '' : ', '}
+                </React.Fragment>
+              ))}
+            </p>
             <p>{uniqueInnateAbilities.map((abillity) => abillity.name).join(', ')}</p>
           </div>
 
@@ -84,7 +110,7 @@ function ChampionCard({
                   key={activeAbility.name}
                   name={activeAbility.name}
                   description={activeAbility.description}
-                  cost={activeAbility.cost}
+                  cost={activeAbility.cost as string}
                 />
               ),
             )}
@@ -100,7 +126,7 @@ function ChampionCard({
                   key={combatManoeuvre.name}
                   name={combatManoeuvre.name}
                   description={combatManoeuvre.description}
-                  cost={combatManoeuvre.cost}
+                  cost={combatManoeuvre.cost as string}
                 />
               ),
             )}
