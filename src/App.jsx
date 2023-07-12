@@ -9,6 +9,8 @@ import { useJudgementApi } from './hooks/useJudgementApi';
 import NewGameRoute from './routes/NewGame';
 import Modal from './components/Modal';
 import GodCard from './components/GodCard';
+import GameRoute from './routes/Game';
+import { GameProvider } from './hooks/useGame';
 
 function App() {
   const {
@@ -39,6 +41,14 @@ function App() {
   return (
     <>
       <Routes>
+        <Route
+          element={(
+            <GameProvider>
+              <GameRoute />
+            </GameProvider>
+          )}
+          path="/games"
+        />
         <Route
           element={<NewGameRoute />}
           path="/new-game"
