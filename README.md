@@ -26,8 +26,8 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
   - [x] active abilities
   - [x] combat manoevres
   - [x] unique innate abilities
-- [ ] Tooltip
-- [ ] Modals, sidepanels
+- [x] Tooltip
+- [x] Modals, sidepanels
 - [ ] Gameplay set up
   - [ ] Set 3v3 or 5v5
   - [ ] Choose god
