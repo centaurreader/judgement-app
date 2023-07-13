@@ -5,7 +5,7 @@ import style from './GodCard.css';
 import Ability from './Ability';
 
 function GodCard({
-  avatarName,
+  avatar,
   champions,
   effigyPower,
   logo,
@@ -52,15 +52,15 @@ function GodCard({
         <p>Champions</p>
         <ul>
           <li>
-            <ModalLink to={`champion,${avatarName.toLowerCase()}`}>
-              {avatarName}
+            <ModalLink to={`champion,${avatar.id}`}>
+              {avatar.name}
             </ModalLink>
             {' '}
             (Avatar)
           </li>
           {champions.map((champion) => (
             <li key={champion.name}>
-              <ModalLink to={`champion,${champion.url_name}`}>
+              <ModalLink to={`champion,${champion.id}`}>
                 {champion.name}
               </ModalLink>
             </li>
@@ -72,7 +72,10 @@ function GodCard({
 }
 
 GodCard.propTypes = {
-  avatarName: PropTypes.string.isRequired,
+  avatar: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
   champions: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     url_name: PropTypes.string.isRequired,

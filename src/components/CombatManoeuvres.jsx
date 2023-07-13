@@ -8,8 +8,8 @@ function CombatManoeuvres({
   cost,
 }) {
   return (
-    <div>
-      <p>
+    <span>
+      <span>
         {' '}
         <span className={style.name}>{name}</span>
         {' '}
@@ -18,9 +18,9 @@ function CombatManoeuvres({
           {cost}
           )
         </span>
-      </p>
-      <p className={style.description}>{description}</p>
-    </div>
+      </span>
+      <span className={style.description}>{description}</span>
+    </span>
   );
 }
 

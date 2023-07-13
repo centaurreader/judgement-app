@@ -5,6 +5,7 @@ import style from './Modal.css';
 
 function Modal({
   children,
+  onClose,
 }) {
   const [portal, setPortal] = useState(false);
   useEffect(() => {
@@ -24,6 +25,7 @@ function Modal({
   return createPortal(
     <div>
       <div className={style.content}>
+        <button onClick={onClose} type="button">Close</button>
         {children}
       </div>
       <button className={style.scrim} type="button" tabIndex={0}>
@@ -36,6 +38,7 @@ function Modal({
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Modal;

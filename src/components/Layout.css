@@ -1,0 +1,50 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    "main"
+    "detail";
+  grid-template-rows: 1fr;
+  height: 100vh;
+}
+
+.main {
+  background-color: var(--white);
+  padding: 1.5rem;
+}
+
+.detail {
+  background-color: var(--white);
+  display: none;
+  padding: 1.5rem;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+.detailVisible {
+  display: block;
+}
+
+@media screen and (min-width: 66rem) {
+  .layout {
+    grid-template-areas: "main detail";
+    grid-template-columns: 1fr minmax(375px, 488px);
+  }
+
+  .main {
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .detail {
+    display: block;
+    border-left: 1px solid var(--grey_200);
+    overflow-y: auto;
+    height: 100vh;
+
+    position: unset;
+  }
+}

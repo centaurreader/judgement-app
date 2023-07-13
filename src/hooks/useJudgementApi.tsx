@@ -30,7 +30,24 @@ const useProvideJudgementApi = () => {
   const fetchGods = async () => {
     setJudgementData((state) => ({
       ...state,
-      gods: godsFixture,
+      gods: godsFixture.map((god) => ({
+        ...god,
+        avatar: {
+          ...god.avatar,
+          id: championsFixture
+            .find((c) => c.name.toUpperCase() === god.avatar.name.toUpperCase())?.id,
+        },
+        champions: god.champions
+          .map((godChamp) => {
+            const champion = championsFixture
+              .find((champ) => godChamp.name.toUpperCase() === champ.name.toUpperCase());
+            return {
+              name: godChamp.name,
+              url_name: godChamp.url_name,
+              id: champion?.id,
+            };
+          }),
+      })),
     }));
   };
 

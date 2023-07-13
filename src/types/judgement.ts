@@ -38,10 +38,12 @@ export type God = {
   avatar: {
     name: string;
     url_name: string;
+    id?: string;
   };
   champions: {
     name: string;
     url_name: string;
+    id?: string;
   }[];
   description: string;
   divineGifts: {

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import style from './StatControl.css';
 
 function StatControl({
+  defaultValue,
   label,
   value,
 }) {
@@ -24,6 +25,7 @@ function StatControl({
           type="number"
           step={1}
           name={label}
+          defaultValue={defaultValue}
           value={value}
           className={style.input}
         />
@@ -40,8 +42,14 @@ function StatControl({
 }
 
 StatControl.propTypes = {
+  defaultValue: PropTypes.number,
   label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number,
+};
+
+StatControl.defaultProps = {
+  defaultValue: undefined,
+  value: undefined,
 };
 
 export default StatControl;

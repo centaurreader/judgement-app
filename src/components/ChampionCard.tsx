@@ -22,7 +22,7 @@ function ChampionCard({
 }: {
   imageUrl: string;
   commonInnateAbilities: { name: string; description: string; }[];
-  gods: string[];
+  gods?: string[];
   name: string;
   soulHarvest: string;
   stats: { label: string; value: string; }[];
@@ -37,11 +37,13 @@ function ChampionCard({
         <div className={style.header}>
           <div className={style.headerLeft}>
             <p className={style.name}>{name}</p>
-            <p>
-              Gods:
-              {' '}
-              {gods.join(', ')}
-            </p>
+            {gods?.length ? (
+              <p>
+                Gods:
+                {' '}
+                {gods.join(', ')}
+              </p>
+            ) : null}
             <p>
               Soul Harvest:
               {' '}
@@ -100,7 +102,7 @@ function ChampionCard({
             ))}
           </tbody>
         </table>
-        <p>
+        <div>
           Active Abillities:
           <p>
             {' '}
@@ -115,8 +117,8 @@ function ChampionCard({
               ),
             )}
           </p>
-        </p>
-        <p>
+        </div>
+        <div>
           Combat Manoeuvres:
           <p>
             {' '}
@@ -131,15 +133,15 @@ function ChampionCard({
               ),
             )}
           </p>
-        </p>
+        </div>
       </div>
 
       <div className={style.controls}>
         <div className={style.control}>
-          <StatControl label="Level" value={0} />
+          <StatControl label="Level" defaultValue={0} />
         </div>
         <div className={style.control}>
-          <StatControl label="Health" value={0} />
+          <StatControl label="Health" defaultValue={0} />
         </div>
       </div>
 
@@ -154,8 +156,11 @@ function ChampionCard({
 }
 
 ChampionCard.propTypes = {
-  commonInnateAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  gods: PropTypes.arrayOf(PropTypes.string).isRequired,
+  commonInnateAbilities: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  })).isRequired,
+  gods: PropTypes.arrayOf(PropTypes.string),
   imageUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   soulHarvest: PropTypes.string.isRequired,
@@ -172,10 +177,22 @@ ChampionCard.propTypes = {
     solid: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   })).isRequired,
-  uniqueInnateAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeAbilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  combatManoeuvres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  uniqueInnateAbilities: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  })).isRequired,
+  activeAbilities: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  })).isRequired,
+  combatManoeuvres: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+  })).isRequired,
+};
 
+ChampionCard.defaultProps = {
+  gods: undefined,
 };
 
 export default ChampionCard;
