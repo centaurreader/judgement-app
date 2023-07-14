@@ -5,13 +5,14 @@ import PropTypes from 'prop-types';
 function ModalLink({
   children,
   to,
+  replace,
 }) {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
   const modals = query.get('modals');
 
   const getTo = () => {
-    if (!modals) { return to; }
+    if (!modals || replace) { return to; }
     return `${modals}|${to}`;
   };
 
@@ -24,7 +25,12 @@ function ModalLink({
 
 ModalLink.propTypes = {
   children: PropTypes.node.isRequired,
+  replace: PropTypes.bool,
   to: PropTypes.string.isRequired,
+};
+
+ModalLink.defaultProps = {
+  replace: false,
 };
 
 export default ModalLink;

@@ -5,6 +5,7 @@ import style from './GodCard.css';
 import Ability from './Ability';
 
 function GodCard({
+  allowSelectChampions,
   avatar,
   champions,
   effigyPower,
@@ -72,6 +73,7 @@ function GodCard({
 }
 
 GodCard.propTypes = {
+  allowSelectChampions: PropTypes.bool,
   avatar: PropTypes.shape({
     name: PropTypes.string,
     id: PropTypes.string,
@@ -90,6 +92,10 @@ GodCard.propTypes = {
   sacredArtefact: PropTypes.string.isRequired,
   traits: PropTypes.string.isRequired,
   warbandBonus: PropTypes.string.isRequired,
+};
+
+GodCard.defaultProps = {
+  allowSelectChampions: false,
 };
 
 export default GodCard;

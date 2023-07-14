@@ -38,9 +38,10 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
   - [ ] add jest and test
 - [ ] add conditions data
 - [ ] Gameplay set up
-  - [ ] Set 3v3 or 5v5
-  - [ ] Choose god
-  - [ ] Choose heroes
+  - [x] Set 3v3 or 5v5
+  - [x] Choose god
+  - [x] Choose heroes
+  - [ ] put game into state
 - [ ] Play layout
   - [ ] change health
   - [ ] level up hero

@@ -5,13 +5,24 @@ import commonInnateAbilities from './judgement-fixture-common-innate-abilities.j
 import godsFixture from './judgement-fixture-gods.json';
 import { Ability, Champion, God } from '../types/judgement';
 
+type JudgementApiStore = {
+  data: {
+    gods: God[] | null;
+    champions: Champion[] | null;
+    commonInnateAbilities: Ability[] | null;
+  };
+  loadChampions: () => Promise<void>;
+  loadGods: () => Promise<void>;
+  loadCommonInnateAbilities: () => Promise<void>;
+};
+
 type JudgementApiState = {
   champions: Champion[] | null;
   commonInnateAbilities: Ability[] | null;
   gods: God[] | null;
 };
 
-const JudgementApiContext = createContext({});
+const JudgementApiContext = createContext({} as JudgementApiStore);
 
 const useProvideJudgementApi = () => {
   const [judgementData, setJudgementData] = useState<JudgementApiState>({
@@ -62,7 +73,6 @@ const useProvideJudgementApi = () => {
     loadChampions: fetchChampions,
     loadGods: fetchGods,
     loadCommonInnateAbilities: fetchCommonInnateAbilities,
-    hasLoaded: judgementData !== null,
     data: judgementData,
   };
 };

@@ -50,6 +50,7 @@ export type God = {
     effigy_power: {
       avatar_bonus: string;
       description: string;
+      name: string;
     };
     sacred_artefact: string;
     warband_bonus: string;
