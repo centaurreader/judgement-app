@@ -43,6 +43,7 @@ function HomeRoute() {
             uniqueInnateAbilities={hero.uniqueInnateAbilities}
             activeAbilities={hero.activeAbilities}
             combatManoeuvres={hero.combatManoeuvres}
+            maxhp={hero.health}
           />
         </div>
       )))}
@@ -80,6 +81,7 @@ function HomeRoute() {
             uniqueInnateAbilities={hero.uniqueInnateAbilities}
             activeAbilities={hero.activeAbilities}
             combatManoeuvres={hero.combatManoeuvres}
+            maxhp={hero.health}
           />
         </div>
       )))}
