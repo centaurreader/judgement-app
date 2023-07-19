@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { v4 } from 'uuid';
 import { useJudgementApi } from '../hooks/useJudgementApi';
 import style from './NewGame.css';
 import Layout from '../components/Layout';
@@ -7,18 +8,8 @@ import GodCard from '../components/GodCard';
 import Modal from '../components/Modal';
 import ChampionCard from '../components/ChampionCard';
 import PlayerSetup from '../components/PlayerSetup';
-
-interface PlayerConfig extends Record<string, any> {
-  godId: string | null;
-  championIds: string[];
-}
-
-interface Game extends Record<string, any> {
-  name?: string;
-  championCount: number | null;
-  player1: PlayerConfig;
-  player2: PlayerConfig;
-}
+import { Game, PlayerConfig } from '../types/app';
+import { useGames } from '../hooks/useGames';
 
 function NewGameRoute() {
   const {
@@ -83,16 +74,20 @@ function NewGameRoute() {
     return true;
   };
 
+  const navigate = useNavigate();
+
+  const { setGame: persistGame } = useGames();
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     if (!game.championCount) { return; }
-    if (isPlayerValid(game.player1)) { return; }
-    if (isPlayerValid(game.player2)) { return; }
-    console.log('put game in state');
+    if (!isPlayerValid(game.player1)) { return; }
+    if (!isPlayerValid(game.player2)) { return; }
+    const id = v4();
+    persistGame(id, game);
+    navigate(`/games/${id}`);
   };
 
   const { search } = useLocation();
-  const navigate = useNavigate();
   const query = new URLSearchParams(search);
   const modals = (query.get('modals')?.split('|')
     .map((val) => val.split(','))) ?? [];

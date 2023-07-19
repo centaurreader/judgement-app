@@ -8,6 +8,7 @@ import { useJudgementApi } from './hooks/useJudgementApi';
 import NewGameRoute from './routes/NewGame';
 import GameRoute from './routes/Game';
 import { GameProvider } from './hooks/useGame';
+import { GamesProvider } from './hooks/useGames';
 
 function App() {
   const {
@@ -31,24 +32,26 @@ function App() {
   if (!data.gods) { return null; }
 
   return (
-    <Routes>
-      <Route
-        element={(
-          <GameProvider>
-            <GameRoute />
-          </GameProvider>
-        )}
-        path="/games"
-      />
-      <Route
-        element={<NewGameRoute />}
-        path="/new-game"
-      />
-      <Route
-        element={<HomeRoute />}
-        index
-      />
-    </Routes>
+    <GamesProvider>
+      <Routes>
+        <Route
+          element={(
+            <GameProvider>
+              <GameRoute />
+            </GameProvider>
+          )}
+          path="/games/:id"
+        />
+        <Route
+          element={<NewGameRoute />}
+          path="/new-game"
+        />
+        <Route
+          element={<HomeRoute />}
+          index
+        />
+      </Routes>
+    </GamesProvider>
   );
 }
 

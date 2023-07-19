@@ -1,14 +1,17 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Champion } from '../types/judgement';
+import { useParams } from 'react-router';
+import { useGames } from './useGames';
+import { Game } from '../types/app';
 
 export type GameStore = {
   gameState: GameState;
-  setHealth: (champion: Champion, health: number) => void;
+  setHealth: (championId: string, health: number) => void;
 };
 
 export type GameState = {
+  config: Game | null;
   champions: {
-    champion: Champion;
+    championId: string;
     health: number;
     level: number;
   }[] | null;
@@ -16,16 +19,17 @@ export type GameState = {
 
 const GameContext = createContext({} as GameStore);
 
-const useProvideGameState = () => {
+const useProvideGameState = (game: Game | null) => {
   const [gameState, setGameState] = useState<GameState>({
+    config: game,
     champions: null,
   });
 
-  const setHealth = (champion: Champion, health: number) => {
+  const setHealth = (championId: string, health: number) => {
     setGameState((state) => ({
       ...state,
       champions: state.champions?.map((c) => {
-        if (c.champion.id !== champion.id) { return c; }
+        if (c.championId !== championId) { return c; }
         return {
           ...c,
           health,
@@ -41,7 +45,10 @@ const useProvideGameState = () => {
 };
 
 export function GameProvider({ children }: React.PropsWithChildren) {
-  const value = useProvideGameState();
+  const { id } = useParams();
+  const { getGame } = useGames();
+  const game = getGame(id);
+  const value = useProvideGameState(game);
   return (
     <GameContext.Provider value={value}>
       {children}
