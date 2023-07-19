@@ -4,7 +4,6 @@ import { useGames } from '../hooks/useGames';
 
 function HomeRoute() {
   const { games } = useGames();
-  console.log(games);
 
   return (
     <div>
