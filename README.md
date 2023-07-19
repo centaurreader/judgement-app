@@ -28,6 +28,11 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
   - [x] unique innate abilities
 - [x] Tooltip
 - [x] Modals, sidepanels
+- [x] Gameplay set up
+  - [x] Set 3v3 or 5v5
+  - [x] Choose god
+  - [x] Choose heroes
+  - [x] put game into state
 - [ ] transform data in useJudgementApi hook
   - [ ] champions
     - [ ] make common innate abilities an object w/ id
@@ -37,11 +42,6 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
     - [ ] add champion IDs
   - [ ] add jest and test
 - [ ] add conditions data
-- [x] Gameplay set up
-  - [x] Set 3v3 or 5v5
-  - [x] Choose god
-  - [x] Choose heroes
-  - [x] put game into state
 - [ ] Play layout
   - [ ] change health
   - [ ] level up hero
