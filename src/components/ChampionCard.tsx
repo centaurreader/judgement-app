@@ -19,7 +19,7 @@ function ChampionCard({
   uniqueInnateAbilities,
   activeAbilities,
   combatManoeuvres,
-  maxhp
+  maxhp,
 }: {
   imageUrl: string;
   commonInnateAbilities: { name: string; description: string; }[];
@@ -67,7 +67,10 @@ function ChampionCard({
               ))}
             </p>
             <p>{uniqueInnateAbilities.map((abillity) => abillity.name).join(', ')}</p>
-           <p>Max Health:{maxhp.map((hp) => (hp)).join(', ')}</p> 
+            <p>
+              Max Health:
+              {maxhp.map((hp) => (hp)).join(', ')}
+            </p>
           </div>
 
           <ul className={`${style.statList} ${style.headerRight}`}>
@@ -77,7 +80,6 @@ function ChampionCard({
               </li>
             ))}
           </ul>
-         
         </div>
 
         <table className={style.weaponTable}>

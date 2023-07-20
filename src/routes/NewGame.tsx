@@ -239,6 +239,7 @@ function NewGameRoute() {
                 ]}
                 uniqueInnateAbilities={champion.uniqueInnateAbilities}
                 weapons={champion.weapons}
+                maxhp={champion.health}
               />
             </Modal>
           );
