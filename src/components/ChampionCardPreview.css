@@ -1,0 +1,24 @@
+.container {
+  border: 1px solid var(--grey_200);
+  border-radius: .25rem;
+  padding: .5rem;
+}
+
+.details {
+  display: flex;
+  gap: .5rem;
+}
+
+.image {
+  max-height: 120px;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.statList { display: flex; flex-wrap: wrap;  width: 9rem; }
+.statListItem { width: 3rem; }
+
+.controls { display: flex; }
+.control { flex: 1; }
