@@ -21,7 +21,11 @@ function ChampionCardPreview({
 
         <div>
           <p className={style.name}>{champion.name}</p>
-
+          <p className={style.soulHarvest}>
+            Soul Harvest:
+            {' '}
+            {champion.soulHarvest}
+          </p>
           <div>
             <ul className={style.statList}>
               <li className={style.statListItem}>
@@ -45,8 +49,40 @@ function ChampionCardPreview({
             </ul>
           </div>
         </div>
+        <table className={style.weaponTable}>
+          <thead>
+            <tr className={style.weaponTableHead}>
+              <td className={`${style.weaponTableCellLeft} ${style.weaponTableCell}`}>Weapon</td>
+              <td className={style.weaponTableCell}>Type</td>
+              <td className={style.weaponTableCell}>Cost</td>
+              <td className={style.weaponTableCell}>Reach</td>
+              <td className={style.weaponTableCell}>Glance</td>
+              <td className={style.weaponTableCell}>Solid</td>
+              <td className={style.weaponTableCell}>Crit</td>
+            </tr>
+          </thead>
+          <tbody>
+            {champion.weapons.map((weapon) => (
+              <tr key={JSON.stringify(weapon)} className={style.weaponTableRow}>
+                <td className={`${style.weaponTableCellLeft} ${style.weaponTableCell}`}>{weapon.name}</td>
+                <td className={style.weaponTableCell}>{weapon.type}</td>
+                <td className={style.weaponTableCell}>{weapon.cost}</td>
+                <td className={style.weaponTableCell}>{weapon.reach}</td>
+                <td className={style.weaponTableCell}>{weapon.glance}</td>
+                <td className={style.weaponTableCell}>{weapon.solid}</td>
+                <td className={style.weaponTableCell}>{weapon.crit}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-
+      <div>
+        <p className={style.abilities}>
+          {champion.uniqueInnateAbilities.map((abillity) => abillity.name).join(', ')}
+          {', '}
+          {champion.commonInnateAbilities.map((abillity) => abillity).join(', ')}
+        </p>
+      </div>
       <div className={style.controls}>
         <div className={style.control}>
           <StatControl label="Level" defaultValue={0} />

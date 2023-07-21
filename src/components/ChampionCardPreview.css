@@ -14,9 +14,41 @@
 }
 
 .name {
+  font-weight: bold;  display : flex
+}
+
+.weaponTable {
+  width:auto;
+  height: 1rem;
+  margin-top: 2.25rem;
+}
+
+.weaponTableHead {
+  border: 1px solid black;
+  background: grey;
   font-weight: bold;
 }
 
+.weaponTableRow {
+  border: 1px solid black;
+}
+.weaponTableRow:last-of-type {
+  border-top: none;
+}
+
+.weaponTableCell {
+  border-right: 1px solid black;
+  text-align: center;
+}
+.weaponTableCell:last-of-type { border: none; }
+
+.weaponTableCellLeft {
+  text-align: left;
+}
+
+
+.abilities{ display: flex; font-size: .725rem;; }
+.soulHarvest{ display: flex;    font-size: .725rem;}
 .statList { display: flex; flex-wrap: wrap;  width: 9rem; }
 .statListItem { width: 3rem; }
 
