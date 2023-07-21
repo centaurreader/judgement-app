@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useGame } from '../hooks/useGame';
 import Layout from '../components/Layout';
@@ -12,11 +12,31 @@ function GameRoute() {
   const { gameState } = useGame();
 
   const { search } = useLocation();
-  const query = new URLSearchParams(search);
-  const modals = (query.get('modals')?.split('|')
-    .map((val) => val.split(','))) ?? [];
+  const [cardModals, setCardModals] = useState<string[][]>([]);
+  useEffect(() => {
+    const query = new URLSearchParams(search);
+    const splitQuery = query.get('modals')?.length
+      ? query.get('modals')?.split('|')
+      : [];
+    const modals = splitQuery?.length ? splitQuery
+      .map((val) => val.split(',')) : [];
+    setCardModals(modals);
+  }, [search]);
 
-  const championModals = modals.filter((modal) => modal[0] === 'champion');
+  const [isDetailVisible, setIsDetailVisible] = useState(false);
+  useEffect(() => {
+    console.log(cardModals)
+    if (!cardModals.length && isDetailVisible) {
+      setIsDetailVisible(false);
+    }
+  }, [isDetailVisible, cardModals.length, cardModals]);
+  useEffect(() => {
+    if (cardModals.length && !isDetailVisible) {
+      setIsDetailVisible(true);
+    }
+  }, [isDetailVisible, cardModals.length]);
+
+  const championModals = cardModals.filter((modal) => modal[0] === 'champion');
 
   return (
     <Layout
@@ -59,7 +79,7 @@ function GameRoute() {
           </div>
         );
       })}
-      isDetailVisible={false}
+      isDetailVisible={isDetailVisible}
     >
       <div>
         <p style={{ fontSize: '.5rem', wordBreak: 'break-word' }}>{JSON.stringify(gameState)}</p>
