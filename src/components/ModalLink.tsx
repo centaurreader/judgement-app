@@ -9,8 +9,8 @@ function ModalLink({
   remove,
 }: React.PropsWithChildren<{
   to: string;
-  replace: boolean;
-  remove: boolean;
+  replace?: boolean;
+  remove?: boolean;
 }>) {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
