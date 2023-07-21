@@ -15,7 +15,7 @@ function ChampionCardPreview({
       <div className={style.details}>
         <img
           className={style.image}
-          src={`https://hallofeternalchampions.com/images/${champion.imageUrl}`}
+          src={`https://hallofeternalchampions.com/images/${champion.avatarUrl}`}
           alt=""
         />
 

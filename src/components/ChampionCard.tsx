@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import StatBlock from './StatBlock';
 import style from './ChampionCard.css';
 import StatControl from './StatControl';
@@ -160,45 +159,5 @@ function ChampionCard({
     </div>
   );
 }
-
-ChampionCard.propTypes = {
-  commonInnateAbilities: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-  })).isRequired,
-  gods: PropTypes.arrayOf(PropTypes.string),
-  imageUrl: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  soulHarvest: PropTypes.string.isRequired,
-  stats: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string,
-  })).isRequired,
-  weapons: PropTypes.arrayOf(PropTypes.shape({
-    cost: PropTypes.string.isRequired,
-    crit: PropTypes.string.isRequired,
-    glance: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    reach: PropTypes.string.isRequired,
-    solid: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  })).isRequired,
-  uniqueInnateAbilities: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-  })).isRequired,
-  activeAbilities: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-  })).isRequired,
-  combatManoeuvres: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    description: PropTypes.string,
-  })).isRequired,
-};
-
-ChampionCard.defaultProps = {
-  gods: undefined,
-};
 
 export default ChampionCard;

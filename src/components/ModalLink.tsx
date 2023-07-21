@@ -6,13 +6,20 @@ function ModalLink({
   children,
   to,
   replace,
-}) {
+  remove,
+}: React.PropsWithChildren<{
+  to: string;
+  replace: boolean;
+  remove: boolean;
+}>) {
   const { search } = useLocation();
   const query = new URLSearchParams(search);
   const modals = query.get('modals');
 
   const getTo = () => {
     if (!modals || replace) { return to; }
+    if (remove) { return modals.replace(to, ''); }
+    if (modals.includes(to)) { return modals; }
     return `${modals}|${to}`;
   };
 

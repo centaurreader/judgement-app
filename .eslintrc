@@ -27,7 +27,8 @@
     {
       "files": "*.tsx",
       "rules": {
-        "react/prop-types": [0, "never"]
+        "react/prop-types": [0, "never"],
+        "react/require-default-props": [0, "never"],
       }
     }
   ]

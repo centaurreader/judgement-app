@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import { useJudgementApi } from '../hooks/useJudgementApi';
 import ChampionCardPreview from '../components/ChampionCardPreview';
 import ChampionCard from '../components/ChampionCard';
+import ModalLink from '../components/ModalLink';
 
 function GameRoute() {
   const { data } = useJudgementApi();
@@ -23,34 +24,39 @@ function GameRoute() {
         const champion = data.champions?.find((c) => c.id === id);
         if (!champion) { return null; }
         return (
-          <ChampionCard
-            key={champion.id}
-            activeAbilities={champion.activeAbilities}
-            combatManoeuvres={champion.combatManoeuvres}
-            commonInnateAbilities={champion.commonInnateAbilities.map((cia) => {
-              const dataCia = data.commonInnateAbilities?.find(
-                (d) => d.name.toUpperCase() === cia.toUpperCase(),
-              );
-              return {
-                name: cia,
-                description: dataCia?.description ?? 'No info available',
-              };
-            })}
-            imageUrl={champion.imageUrl}
-            name={champion.name}
-            soulHarvest={champion.soulHarvest}
-            stats={[
-              { label: 'Mov', value: champion.mov },
-              { label: 'Rng', value: champion.rng },
-              { label: 'Agi', value: champion.agi },
-              { label: 'Mel', value: champion.mel },
-              { label: 'Mag', value: champion.mag },
-              { label: 'Res', value: champion.res },
-            ]}
-            uniqueInnateAbilities={champion.uniqueInnateAbilities}
-            weapons={champion.weapons}
-            maxhp={champion.health}
-          />
+          <div key={champion.id}>
+            <ChampionCard
+              key={champion.id}
+              activeAbilities={champion.activeAbilities}
+              combatManoeuvres={champion.combatManoeuvres}
+              commonInnateAbilities={champion.commonInnateAbilities.map((cia) => {
+                const dataCia = data.commonInnateAbilities?.find(
+                  (d) => d.name.toUpperCase() === cia.toUpperCase(),
+                );
+                return {
+                  name: cia,
+                  description: dataCia?.description ?? 'No info available',
+                };
+              })}
+              imageUrl={champion.avatarUrl}
+              name={champion.name}
+              soulHarvest={champion.soulHarvest}
+              stats={[
+                { label: 'Mov', value: champion.mov },
+                { label: 'Rng', value: champion.rng },
+                { label: 'Agi', value: champion.agi },
+                { label: 'Mel', value: champion.mel },
+                { label: 'Mag', value: champion.mag },
+                { label: 'Res', value: champion.res },
+              ]}
+              uniqueInnateAbilities={champion.uniqueInnateAbilities}
+              weapons={champion.weapons}
+              maxhp={champion.health}
+            />
+            <ModalLink remove to={`champion,${champion.id}`}>
+              Close
+            </ModalLink>
+          </div>
         );
       })}
       isDetailVisible={false}
