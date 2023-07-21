@@ -25,7 +25,6 @@ function GameRoute() {
 
   const [isDetailVisible, setIsDetailVisible] = useState(false);
   useEffect(() => {
-    console.log(cardModals)
     if (!cardModals.length && isDetailVisible) {
       setIsDetailVisible(false);
     }
