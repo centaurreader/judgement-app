@@ -16,6 +16,12 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
 
 1. `npm run build`
 
+## Testing
+
+Tests are run with Jest. Test files should reside in directories named `__tests__` located adjacent to the source code.
+
+Test files should be named `<module-name>.test.(ts|tsx)`.
+
 ## To Do
 
 - [x] Hero card v0
@@ -33,14 +39,16 @@ A web app game player aid for [Judgement: Eternal Champions](https://hallofetern
   - [x] Choose god
   - [x] Choose heroes
   - [x] put game into state
-- [ ] transform data in useJudgementApi hook
-  - [ ] champions
-    - [ ] make common innate abilities an object w/ id
-    - [ ] make gods an object w/ id
-    - [ ] transform the stats
-  - [ ] gods
-    - [ ] add champion IDs
+- [ ] transform data and write json output
+  - [x] champions
+    - [x] make common innate abilities an object w/ id
+    - [x] fix common innate ability names
+    - [x] make gods an object w/ id
+  - [x] gods
+    - [x] add champion IDs
   - [ ] add jest and test
+  - [ ] write json data to disk
+  - [ ] codegen typescript types
 - [ ] add conditions data
 - [ ] Play layout
   - [ ] change health
