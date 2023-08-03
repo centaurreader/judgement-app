@@ -51,6 +51,7 @@ Test files should be named `<module-name>.test.(ts|tsx)`.
   - [x] fix avatars vs champs
   - [x] fix combat manoeuvres
 - [ ] add conditions data
+- [ ] add items data
 - [ ] Play layout
   - [ ] change health
   - [ ] level up hero
