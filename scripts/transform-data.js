@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const { v4 } = require('uuid');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const JsonToTS = require('json-to-ts');
 const previousData = require('../src/data/output.json');
 const championData = require('./judgement-fixture-champions.json');
 const commonInnateAbilityData = require('./judgement-fixture-common-innate-abilities.json');
@@ -52,7 +54,7 @@ function transformChampion(
       if (!godObject) {
         throw new Error(`Could not find god: ${godName}`);
       }
-      return godObject;
+      return godObject.id;
     }),
   };
 }
@@ -60,15 +62,20 @@ function transformChampion(
 function transformGod(god, champions) {
   return {
     ...god,
+    avatar: (Array.isArray(god.avatar) ? god.avatar : [god.avatar])
+      .map((avatar) => {
+        const championForAvatar = champions.find((champion) => champion.name === avatar.name);
+        if (!championForAvatar) {
+          throw new Error(`Could not find avatar: ${avatar.name}`);
+        }
+        return championForAvatar;
+      }),
     champions: god.champions.map((champion) => {
       const championObject = champions.find((c) => c.name === champion.name);
       if (!championObject) {
         throw new Error(`Could not find champion: ${champion.name}`);
       }
-      return {
-        ...champion,
-        id: championObject.id,
-      };
+      return championObject.id;
     }),
   };
 }
@@ -91,11 +98,24 @@ function transform(
   };
 }
 
-function writeOutput(data) {
+function writeJsonOutput(data) {
   fs.writeFileSync(
     path.resolve(__dirname, '..', 'src', 'data', 'output.json'),
     Buffer.from(JSON.stringify(data, undefined, 2)),
   );
+}
+
+function writeTypescriptOutput(json) {
+  fs.writeFileSync(
+    path.resolve(__dirname, '..', 'src', 'types', 'judgement.generated.ts'),
+    Buffer.from(''),
+  );
+  JsonToTS(json).slice(1).forEach((typeInterface, i) => {
+    fs.appendFileSync(
+      path.resolve(__dirname, '..', 'src', 'types', 'judgement.generated.ts'),
+      Buffer.from(`${i === 0 ? '' : '\n'}export ${typeInterface}\n`),
+    );
+  });
 }
 
 function runTransformations() {
@@ -104,9 +124,10 @@ function runTransformations() {
   console.log(`Transformed ${transformedData.champions.length} Champions and ${transformedData.gods.length} Gods`);
   console.log('====');
   console.log('Writing files...');
-  writeOutput(transformedData);
+  writeJsonOutput(transformedData);
   console.log('====');
   console.log('Generating Types...');
+  writeTypescriptOutput(transformedData);
   console.log('====');
   console.log('Transformations complete!');
 }
