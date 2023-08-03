@@ -48,15 +48,7 @@ function GameRoute() {
               key={champion.id}
               activeAbilities={champion.activeAbilities}
               combatManoeuvres={champion.combatManoeuvres}
-              commonInnateAbilities={champion.commonInnateAbilities.map((cia) => {
-                const dataCia = data.commonInnateAbilities?.find(
-                  (d) => d.name.toUpperCase() === cia.toUpperCase(),
-                );
-                return {
-                  name: cia,
-                  description: dataCia?.description ?? 'No info available',
-                };
-              })}
+              commonInnateAbilities={champion.commonInnateAbilities}
               imageUrl={champion.avatarUrl}
               name={champion.name}
               soulHarvest={champion.soulHarvest}

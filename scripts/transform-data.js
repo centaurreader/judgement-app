@@ -14,6 +14,7 @@ function transformChampion(
   gods,
 ) {
   return {
+    ...champion,
     id: champion.id,
     activeAbilities: champion.activeAbilities.map((ability) => ({
       cost: ability.cost,
@@ -60,16 +61,13 @@ function transformChampion(
 }
 
 function transformGod(god, champions) {
+  const championForAvatar = champions.find((champion) => champion.name === god.avatar.name);
+  if (!championForAvatar) {
+    throw new Error(`Could not find avatar: ${god.avatar.name}`);
+  }
   return {
     ...god,
-    avatar: (Array.isArray(god.avatar) ? god.avatar : [god.avatar])
-      .map((avatar) => {
-        const championForAvatar = champions.find((champion) => champion.name === avatar.name);
-        if (!championForAvatar) {
-          throw new Error(`Could not find avatar: ${avatar.name}`);
-        }
-        return championForAvatar;
-      }),
+    avatar: championForAvatar.id,
     champions: god.champions.map((champion) => {
       const championObject = champions.find((c) => c.name === champion.name);
       if (!championObject) {

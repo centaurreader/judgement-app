@@ -13,7 +13,6 @@ import { GamesProvider } from './hooks/useGames';
 function App() {
   const {
     loadChampions,
-    loadCommonInnateAbilities,
     loadGods,
     data,
   } = useJudgementApi();
@@ -26,8 +25,7 @@ function App() {
     ) { return; }
     loadChampions();
     loadGods();
-    loadCommonInnateAbilities();
-  }, [loadGods, loadChampions, data, loadCommonInnateAbilities]);
+  }, [loadGods, loadChampions, data]);
 
   if (!data.gods) { return null; }
 

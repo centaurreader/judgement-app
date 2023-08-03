@@ -1,9 +1,9 @@
 import React from 'react';
-import { Champion } from '../types/judgement';
 import style from './ChampionCardPreview.css';
 import StatBlock from './StatBlock';
 import StatControl from './StatControl';
 import ModalLink from './ModalLink';
+import { Champion } from '../types/judgement.generated';
 
 function ChampionCardPreview({
   champion,

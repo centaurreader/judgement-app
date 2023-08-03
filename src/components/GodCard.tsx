@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ModalLink from './ModalLink';
 import style from './GodCard.css';
 import Ability from './Ability';
+import { Champion, Effigypower } from '../types/judgement.generated';
 
 function GodCard({
-  allowSelectChampions,
   avatar,
   champions,
   effigyPower,
@@ -14,6 +13,15 @@ function GodCard({
   sacredArtefact,
   traits,
   warbandBonus,
+}: {
+  avatar?: Champion;
+  champions: Champion[];
+  effigyPower: Effigypower;
+  logo: string;
+  name: string;
+  sacredArtefact: string;
+  traits: string;
+  warbandBonus: string;
 }) {
   return (
     <div>
@@ -31,7 +39,7 @@ function GodCard({
         <Ability
           description={effigyPower.description}
           name={effigyPower.name}
-          note={effigyPower.avatarBonus}
+          note={effigyPower.avatar_bonus}
         />
 
         <div style={{ marginTop: '.5rem' }}>
@@ -52,13 +60,15 @@ function GodCard({
       <section style={{ marginTop: '.5rem' }}>
         <p>Champions</p>
         <ul>
-          <li>
-            <ModalLink to={`champion,${avatar.id}`}>
-              {avatar.name}
-            </ModalLink>
-            {' '}
-            (Avatar)
-          </li>
+          {avatar ? (
+            <li>
+              <ModalLink to={`champion,${avatar.id}`}>
+                {avatar.name}
+              </ModalLink>
+              {' '}
+              (Avatar)
+            </li>
+          ) : null}
           {champions.map((champion) => (
             <li key={champion.name}>
               <ModalLink to={`champion,${champion.id}`}>
@@ -71,31 +81,5 @@ function GodCard({
     </div>
   );
 }
-
-GodCard.propTypes = {
-  allowSelectChampions: PropTypes.bool,
-  avatar: PropTypes.shape({
-    name: PropTypes.string,
-    id: PropTypes.string,
-  }).isRequired,
-  champions: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    url_name: PropTypes.string.isRequired,
-  })).isRequired,
-  effigyPower: PropTypes.shape({
-    avatarBonus: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  logo: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  sacredArtefact: PropTypes.string.isRequired,
-  traits: PropTypes.string.isRequired,
-  warbandBonus: PropTypes.string.isRequired,
-};
-
-GodCard.defaultProps = {
-  allowSelectChampions: false,
-};
 
 export default GodCard;

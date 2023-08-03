@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button';
 import style from './PlayerSetup.css';
 import ModalLink from './ModalLink';
-import { Champion, God } from '../types/judgement';
+import { Champion, God } from '../types/judgement.generated';
 
 function PlayerSetup({
   championCount,
@@ -54,39 +54,43 @@ function PlayerSetup({
           <>
             <p>God Champions</p>
             {selectedGod ? (
-              <label htmlFor={`${playerName}-${selectedGod.avatar.id}`} key={`${playerName}-${selectedGod.avatar.id}`}>
+              <label htmlFor={`${playerName}-${selectedGod.avatar}`} key={`${playerName}-${selectedGod.avatar}`}>
                 <input
                   type="checkbox"
-                  name={`${playerName}-${selectedGod.avatar.id}`}
-                  id={`${playerName}-${selectedGod.avatar.id}`}
-                  checked={championIds.includes(selectedGod.avatar.id ?? '') ?? ''}
-                  onChange={() => toggleChampion(selectedGod.avatar.id ?? '')}
+                  name={`${playerName}-${selectedGod.avatar}`}
+                  id={`${playerName}-${selectedGod.avatar}`}
+                  checked={championIds.includes(selectedGod.avatar ?? '') ?? ''}
+                  onChange={() => toggleChampion(selectedGod.avatar ?? '')}
                   disabled={championIds.length === championCount
-                    && !championIds.includes(selectedGod.avatar.id ?? '')}
+                    && !championIds.includes(selectedGod.avatar ?? '')}
                 />
-                {selectedGod.avatar.name}
+                {selectedGod.avatar}
                 {' '}
                 (Avatar)
               </label>
             ) : null}
-            {selectedGod?.champions.map((champion) => (
-              <label htmlFor={`${playerName}-${champion.id}`} key={`${playerName}-${champion.id}`}>
-                <input
-                  type="checkbox"
-                  name={`${playerName}-${champion.id}`}
-                  id={`${playerName}-${champion.id}`}
-                  checked={championIds.includes(champion.id ?? '') ?? ''}
-                  onChange={() => toggleChampion(champion.id ?? '')}
-                  disabled={championIds.length === championCount
-                    && !championIds.includes(champion.id ?? '')}
-                />
-                {champion.name}
-              </label>
-            ))}
+            {selectedGod?.champions.map((championId) => {
+              const champion = champions.find((c) => c.id === championId);
+              if (!champion) { throw new Error('Could not find champion'); }
+              return (
+                <label htmlFor={`${playerName}-${championId}`} key={`${playerName}-${championId}`}>
+                  <input
+                    type="checkbox"
+                    name={`${playerName}-${champion.id}`}
+                    id={`${playerName}-${champion.id}`}
+                    checked={championIds.includes(champion.id ?? '') ?? ''}
+                    onChange={() => toggleChampion(champion.id ?? '')}
+                    disabled={championIds.length === championCount
+                      && !championIds.includes(champion.id ?? '')}
+                  />
+                  {champion.name}
+                </label>
+              );
+            })}
             <p>Other Champions</p>
             {champions.filter((champion) => !selectedGod?.champions
-              .some((c) => champion.id === c.id)
-              && selectedGod.avatar.id !== champion.id).map((champion) => (
+              .some((championId) => champion.id === championId)
+              && selectedGod.avatar !== champion.id).map((champion) => (
                 <label htmlFor={`${playerName}-${champion.id}`} key={`${playerName}-${champion.id}`}>
                   <input
                     type="checkbox"

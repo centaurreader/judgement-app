@@ -2,10 +2,10 @@ import React from 'react';
 import StatBlock from './StatBlock';
 import style from './ChampionCard.css';
 import StatControl from './StatControl';
-import ActiveAbility from './ActiveAbility';
+import ActiveAbilityBlock from './ActiveAbilityBlock';
 import CombatManoeuvres from './CombatManoeuvres';
-import { Ability, Weapon } from '../types/judgement';
 import Tooltip from './Tooltip';
+import { ActiveAbility, Uniqueinnateability, Weapon } from '../types/judgement.generated';
 
 function ChampionCard({
   imageUrl,
@@ -27,9 +27,9 @@ function ChampionCard({
   soulHarvest: string;
   stats: { label: string; value: string; }[];
   weapons: Weapon[];
-  uniqueInnateAbilities: Ability[];
-  activeAbilities: Ability[];
-  combatManoeuvres: Ability[];
+  uniqueInnateAbilities: Uniqueinnateability[];
+  activeAbilities: ActiveAbility[];
+  combatManoeuvres: ActiveAbility[];
   maxhp: string[];
 }) {
   return (
@@ -113,7 +113,7 @@ function ChampionCard({
             {' '}
             {activeAbilities.map(
               (activeAbility) => (
-                <ActiveAbility
+                <ActiveAbilityBlock
                   key={activeAbility.name}
                   name={activeAbility.name}
                   description={activeAbility.description}

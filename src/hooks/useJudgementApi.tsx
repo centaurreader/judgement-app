@@ -1,24 +1,20 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import championsFixture from './judgement-fixture-champions.json';
-import commonInnateAbilities from './judgement-fixture-common-innate-abilities.json';
-import godsFixture from './judgement-fixture-gods.json';
-import { Ability, Champion, God } from '../types/judgement';
+import { Champion, CommonInnateAbility, God } from '../types/judgement.generated';
+import data from '../data/output.json';
 
 type JudgementApiStore = {
   data: {
     gods: God[] | null;
     champions: Champion[] | null;
-    commonInnateAbilities: Ability[] | null;
   };
   loadChampions: () => Promise<void>;
   loadGods: () => Promise<void>;
-  loadCommonInnateAbilities: () => Promise<void>;
 };
 
 type JudgementApiState = {
   champions: Champion[] | null;
-  commonInnateAbilities: Ability[] | null;
+  commonInnateAbilities: CommonInnateAbility[] | null;
   gods: God[] | null;
 };
 
@@ -34,45 +30,20 @@ const useProvideJudgementApi = () => {
   const fetchChampions = async () => {
     setJudgementData((state) => ({
       ...state,
-      champions: championsFixture,
+      champions: data.champions,
     }));
   };
 
   const fetchGods = async () => {
     setJudgementData((state) => ({
       ...state,
-      gods: godsFixture.map((god) => ({
-        ...god,
-        avatar: {
-          ...god.avatar,
-          id: championsFixture
-            .find((c) => c.name.toUpperCase() === god.avatar.name.toUpperCase())?.id,
-        },
-        champions: god.champions
-          .map((godChamp) => {
-            const champion = championsFixture
-              .find((champ) => godChamp.name.toUpperCase() === champ.name.toUpperCase());
-            return {
-              name: godChamp.name,
-              url_name: godChamp.url_name,
-              id: champion?.id,
-            };
-          }),
-      })),
-    }));
-  };
-
-  const fetchCommonInnateAbilities = async () => {
-    setJudgementData((state) => ({
-      ...state,
-      commonInnateAbilities,
+      gods: data.gods,
     }));
   };
 
   return {
     loadChampions: fetchChampions,
     loadGods: fetchGods,
-    loadCommonInnateAbilities: fetchCommonInnateAbilities,
     data: judgementData,
   };
 };

@@ -39,7 +39,6 @@ Test files should be named `<module-name>.test.(ts|tsx)`.
   - [x] Choose god
   - [x] Choose heroes
   - [x] put game into state
-- [ ] transform data and write json output
   - [x] champions
     - [x] make common innate abilities an object w/ id
     - [x] fix common innate ability names
@@ -48,7 +47,9 @@ Test files should be named `<module-name>.test.(ts|tsx)`.
     - [x] add champion IDs
   - [x] add jest and test
   - [x] write json data to disk
-  - [ ] codegen typescript types
+  - [x] codegen typescript types
+  - [x] fix avatars vs champs
+  - [ ] fix combat manoeuvres
 - [ ] add conditions data
 - [ ] Play layout
   - [ ] change health

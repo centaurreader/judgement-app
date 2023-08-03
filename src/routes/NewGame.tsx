@@ -15,15 +15,13 @@ function NewGameRoute() {
   const {
     loadChampions,
     loadGods,
-    loadCommonInnateAbilities,
     data,
   } = useJudgementApi();
   useEffect(() => {
     if (data.gods !== null && data.champions !== null) { return; }
     loadGods();
     loadChampions();
-    loadCommonInnateAbilities();
-  }, [loadGods, loadChampions, data, loadCommonInnateAbilities]);
+  }, [loadGods, loadChampions, data]);
 
   const [game, setGame] = useState<Game>({
     name: '',
@@ -119,13 +117,14 @@ function NewGameRoute() {
             return (
               <GodCard
                 key={modal[1]}
-                avatar={god.avatar}
-                champions={god.champions}
-                effigyPower={{
-                  avatarBonus: god.divineGifts.effigy_power.avatar_bonus,
-                  description: god.divineGifts.effigy_power.description,
-                  name: god.divineGifts.effigy_power.name,
-                }}
+                avatar={data.champions?.find((c) => c.id === god.avatar)}
+                champions={god.champions
+                  .map((championId) => {
+                    const champ = data.champions?.find((champion) => championId === champion.id)
+                    if (!champ) { throw new Error('could not find champion'); }
+                    return champ;
+                  })}
+                effigyPower={god.divineGifts.effigy_power}
                 name={god.name}
                 logo={`${god.logo}`}
                 sacredArtefact={god.divineGifts.sacred_artefact}
@@ -217,15 +216,7 @@ function NewGameRoute() {
               <ChampionCard
                 activeAbilities={champion.activeAbilities}
                 combatManoeuvres={champion.combatManoeuvres}
-                commonInnateAbilities={champion.commonInnateAbilities.map((cia) => {
-                  const dataCia = data.commonInnateAbilities?.find(
-                    (d) => d.name.toUpperCase() === cia.toUpperCase(),
-                  );
-                  return {
-                    name: cia,
-                    description: dataCia?.description ?? 'No info available',
-                  };
-                })}
+                commonInnateAbilities={champion.commonInnateAbilities}
                 imageUrl={champion.imageUrl}
                 name={champion.name}
                 soulHarvest={champion.soulHarvest}

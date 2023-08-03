@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './ActiveAbility.css';
+import style from './ActiveAbilityBlock.css';
 
-function ActiveAbility({
+function ActiveAbilityBlock({
   description,
   name,
   cost,
@@ -24,10 +24,10 @@ function ActiveAbility({
   );
 }
 
-ActiveAbility.propTypes = {
+ActiveAbilityBlock.propTypes = {
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   cost: PropTypes.string.isRequired,
 };
 
-export default ActiveAbility;
+export default ActiveAbilityBlock;
