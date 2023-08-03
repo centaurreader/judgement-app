@@ -46,8 +46,8 @@ Test files should be named `<module-name>.test.(ts|tsx)`.
     - [x] make gods an object w/ id
   - [x] gods
     - [x] add champion IDs
-  - [ ] add jest and test
-  - [ ] write json data to disk
+  - [x] add jest and test
+  - [x] write json data to disk
   - [ ] codegen typescript types
 - [ ] add conditions data
 - [ ] Play layout
