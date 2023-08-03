@@ -49,7 +49,7 @@ Test files should be named `<module-name>.test.(ts|tsx)`.
   - [x] write json data to disk
   - [x] codegen typescript types
   - [x] fix avatars vs champs
-  - [ ] fix combat manoeuvres
+  - [x] fix combat manoeuvres
 - [ ] add conditions data
 - [ ] Play layout
   - [ ] change health
