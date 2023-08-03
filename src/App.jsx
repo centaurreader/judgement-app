@@ -21,7 +21,6 @@ function App() {
     if (
       data.gods !== null
       && data.champions !== null
-      && data.commonInnateAbilities !== null
     ) { return; }
     loadChampions();
     loadGods();
